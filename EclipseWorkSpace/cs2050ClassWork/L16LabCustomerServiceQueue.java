@@ -142,5 +142,3 @@ public class L16LabCustomerServiceQueue
     	
     }
 }
-
-

@@ -63,3 +63,15 @@
 /NodeL18.class
 /TaskManager.class
 /TaskManagerDemo.class
+/Book.class
+/CollectionSortBooksLinkedList.class
+/BinarySearchTree$TreeNode.class
+/BinarySearchTree.class
+/BinaryTreeTest.class
+/CarVendingMachineIteration2.class
+/CarVendingMachineIteration2$Car.class
+/CarVendingMachineIteration2$BasicCar.class
+/CarVendingMachineIteration2$CarVendingMachine.class
+/CarVendingMachineIteration2$PremiumCar.class
+/BasicCar.class
+/PremiumCar.class

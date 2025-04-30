@@ -39,7 +39,7 @@ class NodeFix {
     NodeFix next;
 
     public NodeFix(int data) {
-        this.data = data;
+        this.data = data; // reference to where it is 
         this.next = null;
     }
 }

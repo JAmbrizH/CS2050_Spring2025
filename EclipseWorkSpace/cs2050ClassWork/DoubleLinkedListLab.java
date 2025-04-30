@@ -67,8 +67,8 @@ class DoublyLinkedListL18
 		if (head == null)
 		{
 			head = newNode;
-		} else
-		{
+		} else {
+			
 			NodeL18 temp = head;
 			while (temp.next != null)
 			{
