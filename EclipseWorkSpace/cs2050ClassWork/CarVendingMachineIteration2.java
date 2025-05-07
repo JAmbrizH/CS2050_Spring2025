@@ -5,7 +5,7 @@ import java.util.*;
 public class CarVendingMachineIteration2 {
 
 	public static void main(String[] args) {
-		CarVendingMachine02 vendingMachine = new CarVendingMachine02(4, 4);
+		CarVendingMachine02 vendingMachine = new CarVendingMachine02(3, 3);
 		Scanner input = new Scanner(System.in);
 
 		int choice;
@@ -128,11 +128,9 @@ public class CarVendingMachineIteration2 {
 				car = new BasicCar(carMake, carModel, carYear, carPrice, carFloor, carSpace, "Basic");
 			} else if ("P".equalsIgnoreCase(carType)) {
 				car = new PremiumCar(carMake, carModel, carYear, carPrice, carFloor, carSpace, "Premium");
-			} else {
-				System.out.println("Unknown car type: " + carType);
 			}
 
-			vendingMachine.addCarToTower(carFloor, carSpace, car);
+			vendingMachine.addCarToVendingMachine(carFloor, carSpace, car);
 		}
 		scanner.close();
 	}
@@ -153,22 +151,32 @@ class CarVendingMachine02 {
 	}
 
 	// Method to add a car to the tower
-	public void addCarToTower(int carFloor, int carSpace, Car02 car) {
-		// Check if the car is valid
-		if (car.getCarFloor() != carFloor || car.getCarSpace() != carSpace) {
-			System.out.println("Car floor or space does not match");
-			return;
-		}
-		if (Tower.contains(car)) {
-			System.out.println("This space is already taken");
-			return;
-		}
+	public void addCarToVendingMachine(int carFloor, int carSpace, Car02 car) {
+		String slot = carFloor + "-" + carSpace;
+		
+		if (Storage.containsKey(slot)) {
+	        System.out.println("Error: Slot at Floor " + carFloor + " Space " + carSpace + " is already occupied.");
+	        System.out.println(car.toString() + " cannot be placed.");
+	        Storage.remove(slot, car);
+	        return;
+	    }
+
+	    if (Tower.contains(car)) {
+	        System.out.println("Error: This car is already in the vending machine.");
+	        System.out.println(car.toString() + " cannot be placed.");
+	        Tower.remove(car);
+	        return;
+	    }
 		if (carFloor > numFloor || carSpace > numSpace) {
-			System.out.println("Car floor or space is out of bounds");
-			return;
+			System.out.println("Error: Invalid position at Floor " + carFloor + " Space " + carSpace);
+			System.out.println("Cannot place Car: " + car.toString());
+			Storage.remove(slot, car);
+			Tower.remove(car);
+	        return;
 		}
+		
 		Tower.add(car);
-		Storage.put(carFloor + "-" + carSpace, car);
+		Storage.put(slot, car);
 	}
 
 	// Method to display car storage
